@@ -1,0 +1,171 @@
+:root{
+    --dark-gray: #656565;
+    --traingle-color: #334723;
+    --rock-border-color: #0074B6;
+    --paper-border-color: #FFA943;
+    --scissor-border-color: #BD00FF;
+}
+
+*{
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+}
+
+body{
+    font-family: 'Roboto', sans-serif;
+    background-color: #8CC461;
+}
+
+.container{
+    padding: 32px;
+}
+
+.container-inner{
+    width: 95%;
+    margin: auto;
+}
+
+.score-board{
+    width: 70%;
+    border: 3px solid white;
+    padding: 20px 16px;
+    margin: auto;
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    margin-bottom: 24px;
+}
+
+.score-board-left{
+    color: white;
+    font-size: 40px;
+    font-weight: bold;
+    letter-spacing: 4px;
+}
+
+.score-board-right{
+    display: flex;
+    gap: 2rem;
+    justify-content: end;
+}
+
+.computer-sectn, .user-sectn{
+    width: 160px;
+    flex-shrink: 0;
+    background-color: white;
+    padding: 10px 12px;
+    border-radius: 8px;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.score-board-right-title{
+    color: var(--dark-gray);
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 22px;
+    letter-spacing: 3px;
+}
+
+.score{
+    font-size: 68px;
+    font-weight: bold;
+}
+
+.select-option-sectn{
+    margin: auto;
+    margin-top: -40px;
+}
+
+.traingle{
+    border: 20px solid var(--traingle-color);
+    transform: rotate(225deg);
+    border-bottom: none;
+    border-right: none;
+    width: 300px;
+    height: 300px;
+    margin: auto;
+}
+
+.traingle::after{
+    content: "";
+    position: absolute;
+    width: 400px;
+    background-color: var(--traingle-color);
+    height: 20px;
+    transform: rotate(-45deg);
+    transform-origin: right;
+    right: 2px;
+    top: -23px;
+}
+
+.icon{
+    background-color: white;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    cursor: pointer;
+}
+
+.icon.rock img{
+    transform: rotate(135deg) translate(8px,-30px);
+}
+
+.icon.paper img{
+    transform: rotate(135deg) translate(0px,-29px);
+}
+
+.icon.scissors img{
+    transform: rotate(135deg) translate(-7%,-80%)
+}
+
+.rock{
+    position: absolute;
+    left: 65%;
+    top: -28%;
+    z-index: 2;
+    border: 18px solid var(--rock-border-color);
+}
+
+.paper{
+    position: absolute;
+    right: 80%;
+    top: -33%;
+    border: 18px solid var(--paper-border-color);
+}
+
+.scissors{
+    position: absolute;
+    top: 28%;
+    transform: translate(-50%, 66%);
+    z-index: 2;
+    border: 18px solid var(--scissor-border-color);
+}
+
+.rules-sectn{
+    display: flex;
+    justify-content: end;
+    color: white;
+    align-items: end;
+    flex-direction: column;
+    overflow: hidden;
+    margin-top: 8%;
+}
+
+.rule-btn{
+    border: 3px solid white;
+    font-size: 20px;
+    padding: 8px 32px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+
+.game-rules{
+    transition: transform 0.5s ease-in-out;
+    transform: translateX(200%);
+    opacity: 0;
+}
