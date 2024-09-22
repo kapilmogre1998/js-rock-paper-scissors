@@ -162,7 +162,7 @@ body{
 .game-result-sectn.show{
     display: flex;
     justify-content: space-between;
-    width: 90%;
+    width: 94%;
     margin: auto;
     position: relative;
 }
