@@ -1,53 +1,43 @@
-const scoreBoard = JSON.parse(localStorage.getItem('score-board') || null);
-
 const ruleBtnElement = document.querySelector('.rule-btn');
 const gameRulesElement = document.querySelector('.game-rules');
 const closeRulesBtnElement = document.querySelector('.close-btn');
-
 const traingleShapeElement = document.querySelector('.traingle-shape');
-
 const computerChoice = document.getElementById('computer-choice');
-
 const gameResult = document.querySelector('.game-result-sectn')
-
 const playAgainBtn = document.querySelector('.play-again-btn');
-
 const borderShade = document.querySelectorAll('.border-shade');
-
 const againstPcElem = document.querySelector('.against-pc-text');
-
 const computerScoreElem = document.getElementById('computer-score');
-const playerScoreElem =  document.getElementById('player-score');
+const playerScoreElem = document.getElementById('player-score');
 
-const MAPPING = {
-    0: 'rock',
-    1: 'paper',
-    2: 'scissors'
-}
+const MAPPING = { 0: 'rock', 1: 'paper', 2: 'scissors' }
 
-const getScore = () => {
-    const {pcScore, playerScore} = JSON.parse(localStorage.getItem('score-board') || null) || {};
-
-    if(pcScore == 0 && playerScore == 0) return;
-
+const getScoreFromLocalStorage = () => {
+    const { pcScore = 0, playerScore = 0 } = JSON.parse(localStorage.getItem('score-board') || '{}');
     computerScoreElem.innerText = pcScore;
     playerScoreElem.innerText = playerScore;
 }
 
-const getUpdatedScore = (status) => {
-    const { playerScore = 0, pcScore = 0 } = JSON.parse(localStorage.getItem('score-board') || '');
-    return { 
-        playerScore: status === 'WIN' ? +playerScore + 1 : +playerScore,
-        pcScore: status === 'LOST' ? +pcScore + 1 : +pcScore
+const updateScore = (status) => {
+    if(localStorage.getItem('score-board') === null){
+        const playerScore = status === "WIN" ? 1 : 0;
+        const pcScore = status === "LOST" ? 1 : 0;
+
+        storeResultInLocalStorage(playerScore, pcScore);
+        return {
+            playerScore: status === 'WIN' ? 1 : 0,
+            pcScore: status === 'LOST' ? 1 : 0
+        }
+    } else {
+        const { playerScore = 0, pcScore = 0 } = JSON.parse(localStorage.getItem('score-board') || '');
+        return {
+            playerScore: status === 'WIN' ? +playerScore + 1 : +playerScore,
+            pcScore: status === 'LOST' ? +pcScore + 1 : +pcScore
+        }
     }
 }
 
-const storeResultInLocalStorage = (playerScore, pcScore) => { 
-    localStorage.setItem('score-board', JSON.stringify({
-        playerScore,
-        pcScore 
-    }))
-}
+const storeResultInLocalStorage = (playerScore, pcScore) => localStorage.setItem('score-board', JSON.stringify({ playerScore, pcScore}))
 
 function randomOption() {
     return MAPPING[Math.floor(Math.random() * 3)];
@@ -76,39 +66,30 @@ const resetFields = () => {
     })
 }
 
-function showRGameesult({ playerChoice, computerChoice }) {
-    const showResElem = document.getElementById('show-result');
-
+function showGameResult({ playerChoice, computerChoice }) {
     resetFields();
+    const showResElem = document.getElementById('show-result');
 
     const result = getResult(playerChoice, computerChoice);
 
-    if(result === 'TIE'){
+    if (result === 'TIE') {
         showResElem.innerText = `TIE UP`;
         playAgainBtn.innerText = 'REPLAY'
         return againstPcElem.classList.add('hide');
-    }
-
-    if(result === 'WIN') {
-        borderShade[0].classList.add('win');
     } else {
-        borderShade[1].classList.add('win');
+        borderShade[result === 'WIN' ? 0 : 1].classList.add('win');
+        showResElem.innerText = `YOU ${result}`;
+        playAgainBtn.innerText = 'PLAY AGAIN';
     }
 
-    playAgainBtn.innerText = 'PLAY AGAIN'
-    showResElem.innerText = `YOU ${result}`
-
-    const { pcScore, playerScore } = getUpdatedScore(result);
-
+    const { pcScore, playerScore } = updateScore(result);
     storeResultInLocalStorage(playerScore, pcScore);
     computerScoreElem.innerText = +pcScore;
     playerScoreElem.innerText = +playerScore;
 }
 
 ruleBtnElement.addEventListener('click', () => {
-    if (!gameRulesElement.classList.contains('show')) {
-        gameRulesElement.classList.add('show');
-    }
+    gameRulesElement.classList.add('show');
 })
 
 closeRulesBtnElement.addEventListener('click', () => {
@@ -144,7 +125,7 @@ traingleShapeElement.addEventListener('click', (event) => {
     traingleShapeElement.style.display = 'none';
     gameResult.classList.add('show');
 
-    showRGameesult({ playerChoice: selectedIcon, computerChoice: randomChoice });
+    showGameResult({ playerChoice: selectedIcon, computerChoice: randomChoice });
 })
 
 //PLAY AGAIN BUTTON
@@ -153,4 +134,4 @@ playAgainBtn.addEventListener('click', () => {
     gameResult.classList.remove('show');
 })
 
-getScore();
+getScoreFromLocalStorage();
