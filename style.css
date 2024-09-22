@@ -12,13 +12,22 @@
     box-sizing: border-box;
 }
 
+.border-shade .text-center{
+    text-align: center;
+    color: white;
+    font-size: 22px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    margin: 12px 0px;
+}
+
 body{
     font-family: 'Roboto', sans-serif;
     background-color: #8CC461;
 }
 
 .container{
-    padding: 32px;
+    padding: 32px 32px;
 }
 
 .container-inner{
@@ -75,12 +84,12 @@ body{
     font-weight: bold;
 }
 
-.select-option-sectn{
+.select-show-option-sectn{
     margin: auto;
-    margin-top: -40px;
+    margin-top: 0px;
 }
 
-.traingle{
+.traingle-shape{
     border: 20px solid var(--traingle-color);
     transform: rotate(225deg);
     border-bottom: none;
@@ -90,7 +99,7 @@ body{
     margin: auto;
 }
 
-.traingle::after{
+.traingle-shape::after{
     content: "";
     position: absolute;
     width: 400px;
@@ -146,14 +155,129 @@ body{
     border: 18px solid var(--scissor-border-color);
 }
 
+.game-result-sectn{
+    display: none;
+}
+
+.game-result-sectn.show{
+    display: flex;
+    justify-content: space-between;
+    width: 85%;
+    margin: auto;
+    position: relative;
+}
+
+.user-choice, .pc-choice{
+    position: relative;
+    background-color: white;
+    width: 220px;
+    height: 220px;
+    border-radius: 50%;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    display: flex;
+}
+
+.user-choice img, .pc-choice img{
+    position: absolute;
+}
+
+[data-choice-icon='rock']{
+    border: 18px solid var(--rock-border-color);
+}
+
+[data-choice-icon='rock'] img{
+    transform: translate(64%, 92%) scale(1.5)
+}
+
+[data-choice-icon='paper']{
+    border: 18px solid var(--paper-border-color);
+}
+
+[data-choice-icon='paper'] img{
+    transform: translate(80%, 72%) scale(1.5)
+}
+
+[data-choice-icon='scissors']{
+    border: 18px solid var(--scissor-border-color);
+}
+
+[data-choice-icon='scissors'] img{
+    transform: translate(173%, 98%) scale(1.5)
+}
+
+.border-shade .shade-1, .border-shade .shade-2, .border-shade .shade-3 {
+    border-radius: 50%;
+    border: solid transparent;
+}
+
+.border-shade .shade-1 {
+    border-width: 20px;
+}
+
+.border-shade .shade-2 {
+    border-width: 30px;
+}
+
+.border-shade .shade-3 {
+    border-width: 50px;
+}
+
+.border-shade.win .shade-1 {
+    border-color: #66B248;
+    border-width: 30px;
+}
+
+.border-shade.win .shade-2 {
+    border-color: #56A830;
+    border-width: 30px;
+}
+
+.border-shade.win .shade-3 {
+    border-color: #509C27;
+    border-width: 50px;
+}
+
+.game-result{
+    display: grid;
+    place-content: center;
+    color: white;
+    text-align: center;
+    letter-spacing: 6px;
+}
+
+.game-result div:nth-child(1){
+    font-size: 42px;
+    font-weight: bold;
+    letter-spacing: 8px;
+}
+
+.game-result div:nth-child(2){
+    font-size: 25px;
+    font-weight: bold;
+}
+
+.play-again-btn{
+    background-color: white;
+    color: var(--dark-gray);
+    letter-spacing: 3px;
+    font-size: 18px;
+    padding: 16px 0px;
+    border-radius: 10px;
+    font-weight: bold;
+    margin-top: 12px;
+    cursor: pointer;
+}
+
 .rules-sectn{
     display: flex;
+    flex-direction: column;
     justify-content: end;
     color: white;
     align-items: end;
-    flex-direction: column;
-    overflow: hidden;
     margin-top: 8%;
+    position: fixed;
+    bottom: 2%;
+    right: 2%;
 }
 
 .rule-btn{
@@ -162,10 +286,62 @@ body{
     padding: 8px 32px;
     cursor: pointer;
     border-radius: 8px;
+    background-color: #8CC461;
 }
 
 .game-rules{
     transition: transform 0.5s ease-in-out;
-    transform: translateX(200%);
+    /* transform: translateX(200%); */
+    width: 380px;
+    background-color: #1D4529;
+    padding: 20px 24px 20px 52px;
+    border: 8px solid white;
+    border-radius: 12px;
+    position: relative;
+    margin-bottom: 12px;
+}
+
+.game-rules .title{
+    font-size: 32px;
+    font-weight: bold;
+    letter-spacing: 2px;
+    text-align: center;
+    margin-bottom: 16px;
+}
+
+.game-rules.show{
+    transform: translateX(0%) !important;
+}
+
+.close-btn{
+    cursor: pointer;
+    position: absolute;
+    right: -9%;
+    top: -12%;
+    z-index: 3;
+    background-color: red;
+    color: white;
+    font-size: 32px;
+    font-weight: bolder;
+    padding: 10px 16px;
+    border: 8px solid white;
+    border-radius: 50%;
+}
+
+.game-rules ul{
+    list-style-type: square;
+}
+
+.game-rules ul li{
+    margin-bottom: 8px;
+    font-size: 18px;
+}
+
+.game-rules ul li::marker{
+    font-size: 24px;
+    color: yellow;
+}
+
+.hide{
     opacity: 0;
 }

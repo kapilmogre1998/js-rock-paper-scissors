@@ -25,35 +25,70 @@
                     </div>
                     <div class="user-sectn">
                         <div class="score-board-right-title">YOUR SCORE</div>
-                        <div id="user-score" class="score">0</div>
+                        <div id="player-score" class="score">0</div>
                     </div>
                 </div>
             </div>
-            <div class="select-option-sectn">
-                <div class="traingle" >
-                    <div class="icon rock" >
-                        <img src="./Images/rock.png" alt="">
+            <div class="select-show-option-sectn">
+                <div class="traingle-shape">
+                    <div data-icon="rock" class="icon rock">
+                        <img src="./Images/rock.png" alt="rock">
                     </div>
-                    <div class="icon scissors" >
-                        <img src="./Images/scissors.png" alt="">
+                    <div data-icon="scissors" class="icon scissors">
+                        <img src="./Images/scissors.png" alt="scissor">
                     </div>
-                    <div class="icon paper" >
-                        <img src="./Images/paper.png" alt="">
+                    <div data-icon="paper" class="icon paper">
+                        <img src="./Images/paper.png" alt="paper">
+                    </div>
+                </div>
+                <div class="game-result-sectn">
+                    <div data-choice="player" class="border-shade win">
+                        <div class="text-center" >YOU PICKED</div>
+                        <div class="shade-1">
+                            <div class="shade-2">
+                                <div class="shade-3">
+                                    <div id="player-choice" class="user-choice"> </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="game-result">
+                        <div id="show-result" ></div>
+                        <div class="against-pc-text" >AGAINST PC</div>
+                        <div class="play-again-btn" >PLAY AGAIN</div>
+                    </div>
+                    <div data-choice="pc" class="border-shade win">
+                        <div class="text-center" >PC PICKED</div>
+                        <div class="shade-1" >
+                            <div class="shade-2" >
+                                <div class="shade-3" >
+                                    <div id="computer-choice" class="pc-choice"></div>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="rules-sectn">
                 <div class="rules">
-                    <div class="game-rules">
-                        <div>X</div>
-                        <div>Game Rules</div>
+                    <div class="game-rules" style="transform: translateX(200%);">
+                        <div class="close-btn">X</div>
+                        <div class="title">Game Rules</div>
+                        <ul>
+                            <li>Rock beats scissors, scissors beat paper, and paper beats rock.</li>
+                            <li>Agree ahead of time whether you'll count off "rock, paper, scissors, shoot" or just
+                                "rock, paper, scissors.</li>
+                            <li>Use rock, paper, scissors to settle minor decisions or simply play to pass the time.
+                            </li>
+                            <li>If both players lay down the same hand, each player lays down another hand.</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="rule-btn">RULES</div>
             </div>
         </div>
     </div>
-    <script src="script.js"></script>
+    <script type="text/javascript" src="script.js"></script>
 </body>
 
 </html>
